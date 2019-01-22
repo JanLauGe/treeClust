@@ -5,7 +5,7 @@ treeClust.rpart <- function (i, dfx, d.num, control, rcontrol)
 # response.
 #
     outlist <- list (DevRat = 0, Size = 1)
-    if (length (unique (dfx[,i])) == 1)
+    if (length (unique (dfx[[i]])) == 1)
         return (outlist)
 #
 # Check for NAs in the response. We will use this later.
