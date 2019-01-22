@@ -10,14 +10,14 @@ treeClust.rpart <- function (i, dfx, d.num, control, rcontrol)
 #
 # Check for NAs in the response. We will use this later.
 #
-    if (any (is.na (dfx[,i])))
+    if (any (is.na (dfx[[i]])))
         response.had.NAs <- TRUE
     else
         response.had.NAs <- FALSE
 #
 # "rcontrol" elements: use "information" for categorical responses.
 #
-    if (is.element (class (dfx[,i]), c("factor", "character")))
+    if (is.element (class (dfx[[i]]), c("factor", "character")))
         rcontrol$parms <- list (split = "information")
 #
 # LOOP: Build the tree. If it has one leaf, drop this tree and quit.
@@ -70,7 +70,7 @@ treeClust.rpart <- function (i, dfx, d.num, control, rcontrol)
 # The thing named "dev" really is the deviance for a regression tree,
 # but not for a classification tree. Those we have to compute ourselves.
 #
-        if (is.factor (dfx[,i]))
+        if (is.factor (dfx[[i]]))
             devs <- rp.deviance (mytree)
         else
             devs <- mytree$frame$dev
